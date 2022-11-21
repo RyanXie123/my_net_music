@@ -13,6 +13,7 @@ class _Images {
 class _Fonts {
   final GuFengLiShu = 'GuFengLiShu';
   final PuHuiTi = 'PuHuiTi';
+  final PuHuiTiX = 'PuHuiTiX';
 }
 
 class _Videos {
