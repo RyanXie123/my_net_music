@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:my_net_music/routes/app_routes.dart';
+import 'package:my_net_music/utils/injest.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Inject.init();
   runApp(const MyApp());
 }
 
@@ -13,12 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'music',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: AppRoutes.splash,
-      getPages: AppRoutes.routes,
+      initialRoute: Routes.splash,
+      getPages: Routes.routes,
+      builder: FlutterSmartDialog.init(),
     );
   }
 }
