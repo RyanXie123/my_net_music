@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:my_net_music/http/http_exception.dart';
 import 'package:my_net_music/http/request_api.dart';
 import 'package:my_net_music/typedef/function.dart';
+import 'package:my_net_music/utils/sp_util.dart';
 import 'package:my_net_music/utils/toast_util.dart';
 
 const int connectTimeout = 10000;
@@ -50,7 +51,13 @@ class HttpRequest {
       if (baseUrl != null) {
         dio.options.baseUrl = baseUrl;
       }
-
+      if (SpUtil.checkLogin) {
+        if (params == null) {
+          params = {"cookie": SpUtil.cookie};
+        } else {
+          params['cookie'] = SpUtil.cookie;
+        }
+      }
       Response resp = await dio.request(
         path,
         data: data,

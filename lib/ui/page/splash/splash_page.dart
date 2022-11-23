@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_net_music/res/r.dart';
 import 'package:my_net_music/routes/app_routes.dart';
+import 'package:my_net_music/utils/sp_util.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -30,7 +31,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     }));
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Get.offAndToNamed(Routes.login);
+        if (SpUtil.checkLogin) {
+          Get.offAllNamed(Routes.index);
+        } else {
+          Get.offAndToNamed(Routes.login);
+        }
       }
     });
     super.initState();
