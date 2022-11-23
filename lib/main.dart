@@ -3,9 +3,11 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:my_net_music/routes/app_routes.dart';
 import 'package:my_net_music/utils/injest.dart';
+import 'package:my_net_music/utils/sp_util.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.init();
   Inject.init();
   runApp(const MyApp());
 }

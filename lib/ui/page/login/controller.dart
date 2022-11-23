@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:my_net_music/base/base_get_controller.dart';
 import 'package:my_net_music/res/r.dart';
+import 'package:my_net_music/routes/app_routes.dart';
+import 'package:my_net_music/utils/sp_util.dart';
+import 'package:my_net_music/utils/toast_util.dart';
 import 'package:video_player/video_player.dart';
 
 class LoginController extends BaseGetController {
@@ -23,10 +26,24 @@ class LoginController extends BaseGetController {
   }
 
   login() {
-    respository.getPlaylist(
-      success: (data) {
-        debugPrint('请求成功=============>$data');
-      },
-    );
+    var account = accountController.text.trim();
+    var password = passwordController.text.trim();
+    if (account.isEmpty || password.isEmpty) {
+      ToastUtil.show('请输入账号密码');
+      return;
+    }
+    if (account.endsWith("@163.com")) {
+    } else {
+      respository.phoneLogin(
+        phone: account,
+        password: password,
+        success: (data) {
+          SpUtil.cookie = data;
+          ToastUtil.show('登录成功');
+          Get.offAllNamed(Routes.index);
+        },
+        fail: (msg) => ToastUtil.show(msg),
+      );
+    }
   }
 }
