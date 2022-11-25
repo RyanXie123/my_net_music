@@ -4,7 +4,8 @@ import 'package:my_net_music/res/r.dart';
 
 class ThemeController extends GetxController {
   final bgColor = Colors.white.obs;
-   ///字体颜色
+
+  ///字体颜色
   final fontColor = Colors.white.obs;
 
   ///背景图

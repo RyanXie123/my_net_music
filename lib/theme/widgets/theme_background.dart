@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +31,15 @@ class ThemeBackground extends GetView<ThemeController> {
                         fit: BoxFit.cover,
                       )
                     : null),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                  sigmaX: controller.coverBlur.value,
+                  sigmaY: controller.coverBlur.value),
+              child: ClipRect(
+                  child: Container(
+                color: controller.widgetBgColor.value.withOpacity(0.1),
+              )),
+            ),
           );
         })),
         child,
