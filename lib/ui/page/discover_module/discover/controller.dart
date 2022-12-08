@@ -7,7 +7,15 @@ class DiscoverController extends BaseGetController with StateMixin {
   @override
   void onInit() {
     super.onInit();
+
+    getData();
   }
 
-  getData() {}
+  getData() {
+    respository.banner(success: ((data) {
+      banners.addAll(data);
+      update();
+      change(null, status: RxStatus.success());
+    }));
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_net_music/res/color_style.dart';
 import 'package:my_net_music/res/r.dart';
 
+///文本样式统一管理
 class Style {
   static TextStyle puhui20white = TextStyle(
     fontSize: 20,
@@ -35,5 +37,32 @@ class Style {
   static const TextStyle white20 = TextStyle(
     fontSize: 20,
     color: Colors.white,
+  );
+
+  static TextStyle puhui14greybold = TextStyle(
+    fontSize: 14,
+    color: Colors.grey,
+    fontWeight: FontWeight.bold,
+    fontFamily: R.fonts.PuHuiTiX,
+  );
+
+  static TextStyle puhui17grey = TextStyle(
+    fontSize: 17,
+    color: Colors.grey,
+    fontFamily: R.fonts.PuHuiTiX,
+  );
+  static const TextStyle grey19 = TextStyle(
+    fontSize: 19,
+    color: Colors.grey,
+  );
+
+  static const TextStyle f3f3f316 = TextStyle(
+    fontSize: 16,
+    color: ColorStyle.F3F3F3,
+  );
+
+  static const TextStyle b8c0d414 = TextStyle(
+    fontSize: 14,
+    color: ColorStyle.B8C0D4,
   );
 }

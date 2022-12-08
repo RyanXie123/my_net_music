@@ -70,9 +70,9 @@ class Request {
       success: (data) {
         if (dialog) {
           SmartDialog.dismiss(status: SmartStatus.loading);
-          if (success != null) {
-            success(data);
-          }
+        }
+        if (success != null) {
+          success(data);
         }
       },
       fail: (msg) {

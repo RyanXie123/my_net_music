@@ -156,7 +156,7 @@ class RequestRepository {
   }
 
   refreshLogin({Success<String>? success, Fail? fail}) {
-    Request.get<Map<String, dynamic>>(RequestApi.login, dialog: false,
+    Request.get<Map<String, dynamic>>(RequestApi.refreshLogin, dialog: false,
         success: (data) {
       if (data['code'] == 200) {
         success!(data['cookie']);

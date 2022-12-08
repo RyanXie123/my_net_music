@@ -33,11 +33,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     }));
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        if (SpUtil.checkLogin) {
-          Get.offAllNamed(Routes.index);
-        } else {
-          Get.offAndToNamed(Routes.login);
-        }
+        Future.delayed(const Duration(milliseconds: 300), (() {
+          _intentPage();
+        }));
       }
     });
     super.initState();
