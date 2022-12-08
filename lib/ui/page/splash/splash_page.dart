@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_net_music/http/request_respository.dart';
 import 'package:my_net_music/res/r.dart';
 import 'package:my_net_music/routes/app_routes.dart';
 import 'package:my_net_music/utils/sp_util.dart';
+import 'package:my_net_music/utils/toast_util.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,7 +17,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Tween<double> _tween;
-
+  final request = Get.find<RequestRepository>();
   @override
   void initState() {
     _tween = Tween(begin: 0, end: 1);
@@ -78,5 +80,21 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       scale: _animation,
       child: Image.asset(R.images.logo),
     );
+  }
+
+  void _intentPage() {
+    if (SpUtil.checkLogin) {
+      request.refreshLogin(
+        success: (data) {
+          Get.offAllNamed(Routes.index);
+        },
+        fail: (msg) {
+          Get.offAndToNamed(Routes.login);
+          ToastUtil.show('登录已过期，请重新登录');
+        },
+      );
+    } else {
+      Get.offAndToNamed(Routes.index);
+    }
   }
 }

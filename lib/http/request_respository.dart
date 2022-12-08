@@ -155,6 +155,38 @@ class RequestRepository {
     );
   }
 
+  refreshLogin({Success<String>? success, Fail? fail}) {
+    Request.get<Map<String, dynamic>>(RequestApi.login, dialog: false,
+        success: (data) {
+      if (data['code'] == 200) {
+        success!(data['cookie']);
+      } else {
+        if (fail != null) {
+          fail('');
+        }
+      }
+    }, fail: fail);
+  }
+
+  banner({Success<List<String>>? success, Fail? fail}) {
+    Request.get<Map<String, dynamic>>(
+      RequestApi.banner,
+      dialog: false,
+      success: (data) {
+        if (data['code'] == 200) {
+          var result = <String>[];
+          data['banners'].forEach((element) {
+            result.add(element['pic']);
+          });
+          if (success != null) {
+            success(result);
+          }
+        } else {}
+      },
+      fail: fail,
+    );
+  }
+
   getPlaylist({
     String order = 'hot',
     String cat = '华语',

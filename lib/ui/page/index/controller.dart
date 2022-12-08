@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_net_music/res/r.dart';
-import 'package:my_net_music/ui/page/discover/page.dart';
+import 'package:my_net_music/ui/page/discover_module/discover/page.dart';
 import 'package:my_net_music/ui/page/event/page.dart';
 import 'package:my_net_music/ui/page/mine/page.dart';
 import 'package:my_net_music/ui/page/setting/page.dart';
