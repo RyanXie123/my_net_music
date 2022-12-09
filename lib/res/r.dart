@@ -8,6 +8,7 @@ class R {
 class _Images {
   static const path = 'assets/images/';
   final logo = '${path}logo.png';
+
   final appBackground = '${path}app_background.png';
 
   final btmBg = '${path}btm_bg.png';
@@ -21,6 +22,11 @@ class _Images {
   final btmVideoPrs = '${path}btm_video_prs.png';
   final btmAccount = '${path}btm_account.png';
   final btmAccountPrs = '${path}btm_account_prs.png';
+
+  final iconDaily = '${path}icn_daily.png';
+  final iconFm = '${path}icn_fm.png';
+  final iconPlaylist = '${path}icn_playlist.png';
+  final iconRank = '${path}icn_rank.png';
 }
 
 class _Fonts {
