@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:my_net_music/res/box.dart';
 import 'package:my_net_music/res/color_style.dart';
 import 'package:my_net_music/res/style.dart';
+import 'package:my_net_music/theme/widgets/theme_container.dart';
+import 'package:my_net_music/theme/widgets/theme_text.dart';
 import 'package:my_net_music/widgets/border_image.dart';
 import 'package:my_net_music/widgets/search_widget.dart';
 
@@ -75,7 +77,36 @@ class DiscoverPage extends GetView<DiscoverController> {
                     var title = item['title'];
                     String? day = item['day'];
                     return Column(
-                      children: [],
+                      children: [
+                        Stack(
+                          children: [
+                            ThemeContainer(
+                              width: 60,
+                              height: 60,
+                              borderRadius: BorderRadius.circular(30.0),
+                              child: Image.asset(src),
+                            ),
+                            day == null
+                                ? const SizedBox()
+                                : Positioned(
+                                    left: 24,
+                                    top: 27,
+                                    child: ThemeText(
+                                      day,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ))
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: ThemeText(
+                            title,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        )
+                      ],
                     );
                   }),
                 ),

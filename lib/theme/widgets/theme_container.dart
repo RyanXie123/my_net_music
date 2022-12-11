@@ -13,16 +13,18 @@ class ThemeContainer extends GetView<ThemeController> {
   final Border? border;
   final List<BoxShadow>? boxShadow;
 
-  const ThemeContainer(
-      this.width,
-      this.height,
-      this.child,
-      this.padding,
-      this.margin,
-      this.alignment,
-      this.borderRadius,
-      this.border,
-      this.boxShadow);
+  const ThemeContainer({
+    super.key,
+    this.width,
+    this.height,
+    this.child,
+    this.padding,
+    this.margin,
+    this.alignment,
+    this.borderRadius,
+    this.border,
+    this.boxShadow,
+  });
   @override
   Widget build(BuildContext context) {
     return Obx((() => Container(
