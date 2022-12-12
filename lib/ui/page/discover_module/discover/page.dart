@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:my_net_music/res/box.dart';
 import 'package:my_net_music/res/color_style.dart';
 import 'package:my_net_music/res/style.dart';
+import 'package:my_net_music/theme/widgets/theme_adapter.dart';
 import 'package:my_net_music/theme/widgets/theme_container.dart';
 import 'package:my_net_music/theme/widgets/theme_text.dart';
 import 'package:my_net_music/widgets/border_image.dart';
@@ -49,6 +50,7 @@ class DiscoverPage extends GetView<DiscoverController> {
                     height: 150,
                     child: Swiper(
                       itemCount: controller.banners.length,
+                      key: GlobalKey(),
                       itemBuilder: (BuildContext context, int index) {
                         return BorderImage(
                           border: 10,
@@ -57,6 +59,7 @@ class DiscoverPage extends GetView<DiscoverController> {
                       },
                       pagination: const SwiperPagination(),
                       autoplay: true,
+                      controller: SwiperController(),
                     ),
                   );
                 },
@@ -105,10 +108,36 @@ class DiscoverPage extends GetView<DiscoverController> {
                             title,
                             style: const TextStyle(fontSize: 14),
                           ),
-                        )
+                        ),
                       ],
                     );
                   }),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ThemeText(
+                      "推荐歌曲",
+                      style: Style.white18,
+                    ),
+                    ThemeAdapter(builder: (controller) {
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            border: Border.all(
+                              color: controller.fontColor.value,
+                              width: 0.3,
+                            )),
+                      );
+                    }),
+                  ],
                 ),
               ),
             )
