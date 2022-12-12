@@ -8,6 +8,7 @@ import 'package:my_net_music/res/style.dart';
 import 'package:my_net_music/theme/widgets/theme_adapter.dart';
 import 'package:my_net_music/theme/widgets/theme_container.dart';
 import 'package:my_net_music/theme/widgets/theme_text.dart';
+import 'package:my_net_music/ui/page/discover_module/discover/widget/recom_top.dart';
 import 'package:my_net_music/widgets/border_image.dart';
 import 'package:my_net_music/widgets/search_widget.dart';
 
@@ -116,31 +117,16 @@ class DiscoverPage extends GetView<DiscoverController> {
               ),
             ),
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ThemeText(
-                      "推荐歌曲",
-                      style: Style.white18,
-                    ),
-                    ThemeAdapter(builder: (controller) {
-                      return Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            border: Border.all(
-                              color: controller.fontColor.value,
-                              width: 0.3,
-                            )),
-                      );
-                    }),
-                  ],
-                ),
-              ),
-            )
+              child: vBox(18),
+            ),
+
+            ///推荐歌单顶部
+            const RecomTop(
+              title: "推荐歌单",
+            ),
+            SliverToBoxAdapter(
+              child: vBox(6),
+            ),
           ],
         ));
   }

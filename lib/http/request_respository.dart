@@ -2,6 +2,7 @@ import 'package:my_net_music/http/request.dart';
 import 'package:my_net_music/http/request_api.dart';
 import 'package:my_net_music/models/new_song_entity.dart';
 import 'package:my_net_music/models/play_list_entity.dart';
+import 'package:my_net_music/models/recom_play_entity.dart';
 import 'package:my_net_music/typedef/function.dart';
 
 class RequestRepository {
@@ -302,6 +303,32 @@ class RequestRepository {
           }
         }
       },
+      fail: fail,
+    );
+  }
+
+  getRecomPlays({
+    Success<List<RecomPlayListEntity>>? success,
+    Fail? fail,
+  }) {
+    Request.get<Map<String, dynamic>>(
+      RequestApi.recomPlays,
+      dialog: false,
+      success: ((data) {
+        if (data['code'] == 200) {
+          var result = <RecomPlayListEntity>[];
+          data['recommend'].forEach((element) {
+            result.add(RecomPlayListEntity.fromJson(element));
+          });
+          if (success != null) {
+            success(result);
+          }
+        } else {
+          if (fail != null) {
+            fail('获取推荐歌单失败');
+          }
+        }
+      }),
       fail: fail,
     );
   }

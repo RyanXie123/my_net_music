@@ -1,11 +1,12 @@
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:my_net_music/base/base_get_controller.dart';
+import 'package:my_net_music/models/recom_play_entity.dart';
 import 'package:my_net_music/res/r.dart';
 import 'package:my_net_music/utils/date_util.dart';
 
 class DiscoverController extends BaseGetController with StateMixin {
   final banners = <String>[];
-
+  final recomPlays = <RecomPlayListEntity>[];
   final buttons = <Map<String, dynamic>>[
     {
       'src': R.images.iconFm,
@@ -43,7 +44,13 @@ class DiscoverController extends BaseGetController with StateMixin {
     respository.banner(success: ((data) {
       banners.addAll(data);
       update();
-      change(null, status: RxStatus.success());
     }));
+
+    respository.getRecomPlays(
+      success: (data) {
+        recomPlays.addAll(data);
+        update();
+      },
+    );
   }
 }
