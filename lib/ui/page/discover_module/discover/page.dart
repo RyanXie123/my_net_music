@@ -10,6 +10,7 @@ import 'package:my_net_music/theme/widgets/theme_container.dart';
 import 'package:my_net_music/theme/widgets/theme_text.dart';
 import 'package:my_net_music/ui/page/discover_module/discover/widget/recom_top.dart';
 import 'package:my_net_music/widgets/border_image.dart';
+import 'package:my_net_music/widgets/custom_list/build_list.dart';
 import 'package:my_net_music/widgets/search_widget.dart';
 
 import 'controller.dart';
@@ -127,6 +128,43 @@ class DiscoverPage extends GetView<DiscoverController> {
             SliverToBoxAdapter(
               child: vBox(6),
             ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 200,
+                child: buildList(
+                  shirinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (item, index) => hBox(10),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  itemBuilder: ((item, index) {
+                    return SizedBox(
+                      width: 140,
+                      height: 140,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BorderImage(
+                            url: item.picUrl,
+                            border: 10,
+                            fit: BoxFit.fitWidth,
+                          ),
+                          ThemeText(
+                            item.name,
+                            style: Style.f3f3f316,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+                  items: controller.recomPlays,
+                ),
+              ),
+            ),
+
+            ///推荐歌曲列表
+            ///
           ],
         ));
   }
