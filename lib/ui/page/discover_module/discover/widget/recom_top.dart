@@ -28,7 +28,7 @@ class RecomTop extends StatelessWidget {
               onTap: () {},
               child: ThemeAdapter(builder: (controller) {
                 return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       border: Border.all(
