@@ -43,4 +43,8 @@ class _Videos {
 class _Lottie {
   static const path = 'assets/lottie/';
   final loading = '${path}loading.json';
+  final refreshEmpty = '${path}refresh_empty.json';
+  final refreshError = '${path}refresh_error.json';
+  final refreshHeader = '${path}refresh_header.json';
+  final refreshFooter = '${path}refresh_footer.json';
 }
