@@ -34,7 +34,7 @@ class LoginController extends BaseGetController {
     }
     if (account.endsWith("@163.com")) {
     } else {
-      respository.phoneLogin(
+      repository.phoneLogin(
         phone: account,
         password: password,
         success: (data) {

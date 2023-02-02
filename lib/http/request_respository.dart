@@ -332,4 +332,28 @@ class RequestRepository {
       fail: fail,
     );
   }
+
+  ///获取歌曲播放链接
+  ///[id]歌曲id
+  ///[br]码率
+  ///[success]成功
+  ///[fail]失败
+  getSongUrl({
+    required int id,
+    Success<String>? success,
+  }) {
+    var params = {
+      'id': id.toString(),
+    };
+    Request.get<Map<String, dynamic>>(
+      RequestApi.songUrl,
+      params: params,
+      dialog: false,
+      success: (data) {
+        if (success != null) {
+          success(data['data'][0]['url']);
+        }
+      },
+    );
+  }
 }

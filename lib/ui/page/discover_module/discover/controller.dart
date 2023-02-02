@@ -43,18 +43,18 @@ class DiscoverController extends BaseGetController with StateMixin {
   }
 
   getData() {
-    respository.banner(success: ((data) {
+    repository.banner(success: ((data) {
       banners.addAll(data);
       update();
     }));
 
-    respository.getRecomPlays(
+    repository.getRecomPlays(
       success: (data) {
         recomPlays.addAll(data);
         update();
       },
     );
-    respository.getNewSongs(success: ((data) {
+    repository.getNewSongs(success: ((data) {
       newSongs.addAll(data);
       update();
     }));

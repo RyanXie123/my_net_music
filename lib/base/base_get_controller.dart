@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:my_net_music/http/request_respository.dart';
 
 class BaseGetController extends GetxController {
-  late RequestRepository respository;
+  late RequestRepository repository;
   @override
   void onInit() {
-    respository = Get.find<RequestRepository>();
+    repository = Get.find<RequestRepository>();
     super.onInit();
   }
 }

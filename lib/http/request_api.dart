@@ -1,5 +1,5 @@
 class RequestApi {
-  static const String BASE_URL = "http://xieru.asuscomm.com:4000/";
+  static const String BASE_URL = "http://10.0.2.2:3000";
 
   ///邮箱登录
   static const String login = '/login';
@@ -30,4 +30,7 @@ class RequestApi {
 
   ///获取歌单列表
   static const String playlist = '/top/playlist';
+
+  ///获取歌曲url
+  static const String songUrl = '/song/url';
 }
