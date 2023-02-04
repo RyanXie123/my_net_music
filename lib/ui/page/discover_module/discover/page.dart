@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
+import 'package:my_net_music/models/recom_play_entity.dart';
 import 'package:my_net_music/res/box.dart';
 import 'package:my_net_music/res/color_style.dart';
 import 'package:my_net_music/res/style.dart';
@@ -129,6 +130,28 @@ class DiscoverPage extends GetView<DiscoverController> {
             SliverToBoxAdapter(
               child: vBox(6),
             ),
+
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 200,
+                child: buildList<RecomPlayListEntity>(
+                    scrollDirection: Axis.horizontal,
+                    shirinkWrap: true,
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    separatorBuilder: (item, index) => hBox(20),
+                    itemBuilder: ((item, index) {
+                      return SizedBox(
+                        width: 140,
+                        height: 140,
+                        child: Column(
+                          children: [BorderImage(url: item.picUrl, border: 10)],
+                        ),
+                      );
+                    }),
+                    items: controller.recomPlays),
+              ),
+            ),
+
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 200,

@@ -58,6 +58,35 @@ class PlayMusicController extends BaseGetController {
     });
   }
 
+  ///单曲播放
+  playOne(PlayEntity song) {
+    if (songs.isNotEmpty) {
+      if (song.id == songs[currentIndex.value].id) {
+        return;
+      }
+      songs.contains(song)
+          ? currentIndex.value = songs.indexOf(song)
+          : currentIndex.value++;
+    }
+    songs.insert(currentIndex.value, song);
+    play();
+  }
+
+  ///下一首播放
+  addNext(PlayEntity song) async {
+    songs.insert(currentIndex.value + 1, song);
+  }
+
+  ///列表播放
+  playMore({required List<PlayEntity> songs, int? index}) {
+    if (index != null) {
+      currentIndex.value = index;
+      this.songs.clear();
+    }
+    this.songs.addAll(songs);
+    play();
+  }
+
   ///播放
   play() async {
     repository.getSongUrl(
@@ -66,5 +95,62 @@ class PlayMusicController extends BaseGetController {
         await _player.play(data);
       },
     );
+  }
+
+  pause() {
+    _player.pause();
+  }
+
+  resume() {
+    _player.resume();
+  }
+
+  previous() {
+    _player.stop();
+
+    ///根据播放模式判断
+    if (currentIndex.value == 0) {
+      currentIndex.value = songs.length - 1;
+    } else {
+      currentIndex.value--;
+    }
+    play();
+  }
+
+  ///下一首
+  next() {
+    _player.stop();
+    Future.delayed(const Duration(microseconds: 400), () {
+      if (currentIndex.value == songs.length - 1) {
+        currentIndex.value = 0;
+      } else {
+        currentIndex.value++;
+      }
+      play();
+    });
+  }
+
+  ///开始拖动进度条
+  startSeek() {
+    _isSeeking = true;
+  }
+
+  ///播放跳转
+  seeking(double value) {
+    _isSeeking = true;
+    played = Duration(milliseconds: value.toInt());
+    update(['time']);
+  }
+
+  ///跳转
+  seekTo(double value) {
+    _isSeeking = false;
+    _player.seek(Duration(milliseconds: value.toInt()));
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
   }
 }
