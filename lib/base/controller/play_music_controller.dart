@@ -1,6 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
-import 'package:my_net_music/base/base_get_controller.dart';
+import 'package:my_net_music/base/controller/base_get_controller.dart';
 import 'package:my_net_music/models/play_entity.dart';
 
 class PlayMusicController extends BaseGetController {

@@ -1,6 +1,8 @@
 import 'package:my_net_music/http/request.dart';
 import 'package:my_net_music/http/request_api.dart';
 import 'package:my_net_music/models/new_song_entity.dart';
+import 'package:my_net_music/models/play_list_detail_entity.dart';
+import 'package:my_net_music/models/play_list_detail_song_entity.dart';
 import 'package:my_net_music/models/play_list_entity.dart';
 import 'package:my_net_music/models/recom_play_entity.dart';
 import 'package:my_net_music/typedef/function.dart';
@@ -354,6 +356,106 @@ class RequestRepository {
           success(data['data'][0]['url']);
         }
       },
+    );
+  }
+
+  getPlayListDetail(
+      {required int id,
+      int? s,
+      Success<PlayListDetailEntity>? success,
+      Fail? fail}) {
+    var params = {
+      'id': id.toString(),
+      's': s,
+    };
+    Request.get<Map<String, dynamic>>(
+      RequestApi.playListDetail,
+      dialog: false,
+      params: params,
+      success: (data) {
+        if (data['code'] == 200) {
+          if (success != null) {
+            success(PlayListDetailEntity.fromJson(data['playlist']));
+          }
+        } else {
+          if (fail != null) {
+            fail('获取歌单详情失败');
+          }
+        }
+      },
+      fail: fail,
+    );
+  }
+
+  getPlayListDetailSongs(
+      {required int id,
+      required int offset,
+      int limit = 21,
+      Success<List<PlayListDetailSongEntity>>? success,
+      Fail? fail}) {
+    var params = {
+      "id": id.toString(),
+      "limit": limit.toString(),
+      "offset": '{offset*limit}'
+    };
+    Request.get<Map<String, dynamic>>(
+      RequestApi.playListTrackAll,
+      dialog: false,
+      params: params,
+      success: (data) {
+        if (data['code'] == 200) {
+          if (success != null) {
+            var result = <PlayListDetailSongEntity>[];
+            data['songs'].forEach((element) {
+              result.add(
+                PlayListDetailSongEntity.fromJson(element),
+              );
+            });
+            success(result);
+          }
+        } else {
+          if (fail != null) {
+            fail('获取歌单详情失败');
+          }
+        }
+      },
+    );
+  }
+
+  ///获取相关歌单推荐
+  ///[id]
+  ///[success]成功
+  ///[fail]失败
+  getRelatedPlayList({
+    required int id,
+    Success<List<PlayListEntity>>? success,
+    Fail? fail,
+  }) {
+    var params = {
+      'id': id.toString(),
+    };
+    Request.get<Map<String, dynamic>>(
+      RequestApi.relatedPlaylist,
+      dialog: false,
+      params: params,
+      success: (data) {
+        if (data['code'] == 200) {
+          if (success != null) {
+            var result = <PlayListEntity>[];
+            data['playlists'].forEach((element) {
+              result.add(
+                PlayListEntity.fromJson(element),
+              );
+            });
+            success(result);
+          }
+        } else {
+          if (fail != null) {
+            fail('获取相关歌单推荐失败');
+          }
+        }
+      },
+      fail: fail,
     );
   }
 }

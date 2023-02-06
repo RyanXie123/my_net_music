@@ -1,5 +1,7 @@
 class RequestApi {
-  static const String BASE_URL = "http://10.0.2.2:3000";
+  // static const String BASE_URL = "https://wyapi.vvxing.cn";
+  static const String BASE_URL = "http://localhost:3000/";
+  // static const String BASE_URL = "http://10.0.2.2:3000";
 
   ///邮箱登录
   static const String login = '/login';
@@ -31,6 +33,27 @@ class RequestApi {
   ///获取歌单列表
   static const String playlist = '/top/playlist';
 
+  ///获取歌单详情
+  static const String playListDetail = '/playlist/detail';
+
+  ///获取歌单所有歌曲
+  static const String playListTrackAll = '/playlist/track/all';
+
+  ///获取相关歌单推荐
+  static const String relatedPlaylist = '/related/playlist';
+
+  ///获取歌单收藏者
+  static const String playlistSubscribers = '/playlist/subscribers';
+
+  ///获取每日推荐歌曲
+  static const String dailySongs = '/recommend/songs';
+
+  ///获取排行榜
+  static const String rank = '/toplist/detail';
+
   ///获取歌曲url
   static const String songUrl = '/song/url';
+
+  ///获取歌曲评论
+  static const String songComment = '/comment/music';
 }

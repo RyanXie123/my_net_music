@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:my_net_music/base/base_get_controller.dart';
+import 'package:my_net_music/base/controller/base_get_controller.dart';
+
 import 'package:my_net_music/res/r.dart';
 import 'package:my_net_music/routes/app_routes.dart';
 import 'package:my_net_music/utils/sp_util.dart';
